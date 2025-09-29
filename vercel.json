@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/mmdireito/packages/frontend/$1" }
+  ]
+}
