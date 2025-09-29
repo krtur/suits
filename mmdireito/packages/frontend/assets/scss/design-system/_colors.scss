@@ -1,0 +1,168 @@
+// Design System - Colors
+// Comprehensive color system for the application
+
+// Base colors
+$white: #ffffff;
+$black: #000000;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Primary brand colors
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+// Semantic colors
+$primary: $blue;
+$secondary: $gray-600;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-900;
+
+// Background colors
+$bg-primary: $white;
+$bg-secondary: $gray-100;
+$bg-tertiary: $gray-200;
+
+// Text colors
+$text-primary: $gray-900;
+$text-secondary: $gray-600;
+$text-muted: $gray-500;
+$text-light: $white;
+
+// Border colors
+$border-color: $gray-300;
+$border-color-dark: $gray-400;
+
+// Agent theme colors
+// Contract Analyzer (Blue theme)
+$contract-analyzer: (
+  primary: #0d6efd,
+  secondary: #6ea8fe,
+  light: #cfe2ff,
+  dark: #084298,
+  accent: #0a58ca,
+  agent-bg: #e7f1ff
+);
+
+// Devil Advocate (Red theme)
+$devil-advocate: (
+  primary: #c94c4c,
+  secondary: #e57373,
+  light: #ffebee,
+  dark: #b71c1c,
+  accent: #d32f2f,
+  agent-bg: #fdeaea
+);
+
+// Agente Civil (Green theme)
+$agente-civil: (
+  primary: #2E8B57,
+  secondary: #3CB371,
+  light: #E8F5E9,
+  dark: #1B5E20,
+  accent: #43A047,
+  agent-bg: #f0f8f0
+);
+
+// Agente Penal (Orange theme)
+$agente-penal: (
+  primary: #e67e22,
+  secondary: #f39c12,
+  light: #FFF3E0,
+  dark: #E65100,
+  accent: #F57C00,
+  agent-bg: #fdf2e9
+);
+
+// Function to get theme color
+@function theme-color($theme, $variant) {
+  @return map-get(map-get($themes, $theme), $variant);
+}
+
+// All themes map
+$themes: (
+  contract_analyzer: $contract-analyzer,
+  devil_advocate: $devil-advocate,
+  agente_civil: $agente-civil,
+  agente_penal: $agente-penal
+);
+
+// Generate CSS variables for all themes
+:root {
+  // Global colors
+  --white: #{$white};
+  --black: #{$black};
+  
+  @for $i from 1 through 9 {
+    --gray-#{$i}00: #{map-get($gray-100, $i * 100)};
+  }
+  
+  --blue: #{$blue};
+  --indigo: #{$indigo};
+  --purple: #{$purple};
+  --pink: #{$pink};
+  --red: #{$red};
+  --orange: #{$orange};
+  --yellow: #{$yellow};
+  --green: #{$green};
+  --teal: #{$teal};
+  --cyan: #{$cyan};
+  
+  // Semantic colors
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --success: #{$success};
+  --info: #{$info};
+  --warning: #{$warning};
+  --danger: #{$danger};
+  --light: #{$light};
+  --dark: #{$dark};
+  
+  // Background colors
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-tertiary: #{$bg-tertiary};
+  
+  // Text colors
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-muted: #{$text-muted};
+  --text-light: #{$text-light};
+  
+  // Border colors
+  --border-color: #{$border-color};
+  --border-color-dark: #{$border-color-dark};
+  
+  // Agent theme colors
+  @each $theme-name, $theme-colors in $themes {
+    @each $color-name, $color-value in $theme-colors {
+      --#{$theme-name}-#{$color-name}: #{$color-value};
+    }
+  }
+  
+  // Default theme (Contract Analyzer)
+  --primary-color: var(--contract_analyzer-primary);
+  --secondary-color: var(--contract_analyzer-secondary);
+  --light-color: var(--contract_analyzer-light);
+  --dark-color: var(--contract_analyzer-dark);
+  --accent-color: var(--contract_analyzer-accent);
+  --agent-message-bg: var(--contract_analyzer-agent-bg);
+}

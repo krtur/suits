@@ -1,0 +1,347 @@
+// Layout - Dashboard
+// Dashboard layout and styling
+
+// Dashboard container
+.dashboard {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: var(--bg-primary);
+  
+  // Dashboard header
+  .dashboard-header {
+    margin-bottom: 2rem;
+    
+    h1 {
+      @include heading-2;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      @include body-text;
+      color: var(--text-secondary);
+      max-width: 800px;
+    }
+  }
+  
+  // Dashboard section
+  .dashboard-section {
+    margin-bottom: 3rem;
+    
+    h2 {
+      @include heading-3;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      
+      .section-icon {
+        margin-right: 0.5rem;
+        color: var(--primary-color);
+      }
+    }
+    
+    p {
+      @include body-text;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  // Agent cards grid
+  .agent-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  // Agent card
+  .agent-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: transform var(--duration-fast) var(--ease-in-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    // Card header
+    .agent-card-header {
+      padding: 1.5rem;
+      background-color: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      
+      .agent-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--border-radius-circle);
+        background-color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        
+        .material-symbols-outlined,
+        .fas {
+          font-size: 24px;
+        }
+      }
+      
+      .agent-info {
+        flex: 1;
+        
+        h3 {
+          @include heading-4;
+          margin-bottom: 0.25rem;
+        }
+        
+        .agent-type {
+          @include caption;
+          color: var(--text-secondary);
+        }
+      }
+    }
+    
+    // Card body
+    .agent-card-body {
+      padding: 1.5rem;
+      
+      p {
+        @include body-text-sm;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+      }
+      
+      .agent-features {
+        margin-bottom: 1.5rem;
+        
+        .feature-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.5rem;
+          
+          .feature-icon {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            font-size: 16px;
+          }
+          
+          .feature-text {
+            @include body-text-sm;
+          }
+        }
+      }
+    }
+    
+    // Card footer
+    .agent-card-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  
+  // Agent card themes
+  .agent-card[data-agent="contract_analyzer"] {
+    .agent-icon {
+      color: var(--contract_analyzer-primary);
+    }
+    
+    .agent-card-header {
+      border-top: 4px solid var(--contract_analyzer-primary);
+    }
+    
+    .feature-icon {
+      color: var(--contract_analyzer-primary);
+    }
+  }
+  
+  .agent-card[data-agent="devil_advocate"] {
+    .agent-icon {
+      color: var(--devil_advocate-primary);
+    }
+    
+    .agent-card-header {
+      border-top: 4px solid var(--devil_advocate-primary);
+    }
+    
+    .feature-icon {
+      color: var(--devil_advocate-primary);
+    }
+  }
+  
+  .agent-card[data-agent="agente_civil"] {
+    .agent-icon {
+      color: var(--agente_civil-primary);
+    }
+    
+    .agent-card-header {
+      border-top: 4px solid var(--agente_civil-primary);
+    }
+    
+    .feature-icon {
+      color: var(--agente_civil-primary);
+    }
+  }
+  
+  .agent-card[data-agent="agente_penal"] {
+    .agent-icon {
+      color: var(--agente_penal-primary);
+    }
+    
+    .agent-card-header {
+      border-top: 4px solid var(--agente_penal-primary);
+    }
+    
+    .feature-icon {
+      color: var(--agente_penal-primary);
+    }
+  }
+  
+  // Recent conversations
+  .recent-conversations {
+    .conversation-card {
+      display: flex;
+      padding: 1rem;
+      background-color: var(--bg-secondary);
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      transition: background-color var(--duration-fast) var(--ease-in-out);
+      cursor: pointer;
+      
+      &:hover {
+        background-color: var(--bg-tertiary);
+      }
+      
+      .conversation-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--border-radius-circle);
+        background-color: var(--bg-tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        
+        .material-symbols-outlined,
+        .fas {
+          font-size: 20px;
+          color: var(--text-secondary);
+        }
+      }
+      
+      .conversation-info {
+        flex: 1;
+        
+        .conversation-title {
+          @include body-text;
+          font-weight: var(--font-weight-medium);
+          margin-bottom: 0.25rem;
+        }
+        
+        .conversation-preview {
+          @include body-text-sm;
+          color: var(--text-secondary);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 500px;
+        }
+      }
+      
+      .conversation-meta {
+        text-align: right;
+        min-width: 100px;
+        
+        .conversation-date {
+          @include caption;
+          color: var(--text-secondary);
+        }
+        
+        .conversation-agent {
+          @include body-text-xs;
+          color: var(--primary-color);
+          font-weight: var(--font-weight-medium);
+        }
+      }
+    }
+  }
+  
+  // Quick tips
+  .quick-tips {
+    .tips-list {
+      background-color: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      
+      .tip-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        .tip-number {
+          width: 24px;
+          height: 24px;
+          border-radius: var(--border-radius-circle);
+          background-color: var(--primary-color);
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: var(--font-weight-bold);
+          margin-right: 1rem;
+          flex-shrink: 0;
+        }
+        
+        .tip-content {
+          flex: 1;
+          
+          .tip-title {
+            @include body-text;
+            font-weight: var(--font-weight-medium);
+            margin-bottom: 0.25rem;
+          }
+          
+          .tip-description {
+            @include body-text-sm;
+            color: var(--text-secondary);
+          }
+        }
+      }
+    }
+  }
+  
+  // Responsive
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    
+    .agent-cards {
+      grid-template-columns: 1fr;
+    }
+    
+    .conversation-card {
+      flex-direction: column;
+      
+      .conversation-icon {
+        margin-bottom: 0.5rem;
+      }
+      
+      .conversation-meta {
+        margin-top: 0.5rem;
+        text-align: left;
+      }
+    }
+  }
+}

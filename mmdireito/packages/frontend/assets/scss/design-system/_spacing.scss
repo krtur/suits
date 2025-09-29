@@ -1,0 +1,106 @@
+// Design System - Spacing
+// Consistent spacing system
+
+// Spacing scale
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,  // 4px
+  2: $spacer * 0.5,   // 8px
+  3: $spacer * 0.75,  // 12px
+  4: $spacer,         // 16px
+  5: $spacer * 1.5,   // 24px
+  6: $spacer * 2,     // 32px
+  7: $spacer * 2.5,   // 40px
+  8: $spacer * 3,     // 48px
+  9: $spacer * 4,     // 64px
+  10: $spacer * 5     // 80px
+);
+
+// Generate spacing utility classes
+:root {
+  @each $key, $value in $spacers {
+    --spacer-#{$key}: #{$value};
+  }
+}
+
+// Margin utilities
+@each $key, $value in $spacers {
+  .m-#{$key} {
+    margin: $value !important;
+  }
+  
+  .mt-#{$key} {
+    margin-top: $value !important;
+  }
+  
+  .mr-#{$key} {
+    margin-right: $value !important;
+  }
+  
+  .mb-#{$key} {
+    margin-bottom: $value !important;
+  }
+  
+  .ml-#{$key} {
+    margin-left: $value !important;
+  }
+  
+  .mx-#{$key} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  
+  .my-#{$key} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+}
+
+// Padding utilities
+@each $key, $value in $spacers {
+  .p-#{$key} {
+    padding: $value !important;
+  }
+  
+  .pt-#{$key} {
+    padding-top: $value !important;
+  }
+  
+  .pr-#{$key} {
+    padding-right: $value !important;
+  }
+  
+  .pb-#{$key} {
+    padding-bottom: $value !important;
+  }
+  
+  .pl-#{$key} {
+    padding-left: $value !important;
+  }
+  
+  .px-#{$key} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  
+  .py-#{$key} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+// Gap utilities
+@each $key, $value in $spacers {
+  .gap-#{$key} {
+    gap: $value !important;
+  }
+  
+  .gap-x-#{$key} {
+    column-gap: $value !important;
+  }
+  
+  .gap-y-#{$key} {
+    row-gap: $value !important;
+  }
+}

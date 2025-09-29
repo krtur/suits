@@ -1,0 +1,19 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+langchain
+langchain-google-genai
+loguru
+
+# Dependências para upload e processamento de arquivos
+python-multipart
+pypdf
+python-docx
+
+# Dependências para RAG (Vector Store)
+supabase
+langchain-community
+langchain-huggingface
+sentence-transformers
+faiss-cpu
+torch>=2.1.0

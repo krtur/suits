@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&M Direito - Configurações</title>
+    
+    <!-- Google Fonts e Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Script de Tema (carrega antes do CSS para evitar FOUC) -->
+    <script src="../assets/js/theme.js"></script>
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="light-theme">
+    <div class="app-container">
+        <!-- Barra Lateral para Navegação -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h1 class="logo">M&M Direito</h1>
+            </header>
+            
+            <!-- Menu de Navegação -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="chat.html">
+                            <span class="material-symbols-outlined">chat</span>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="document-analysis.html">
+                            <span class="material-symbols-outlined">description</span>
+                            <span>Análise de Documentos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <span class="material-symbols-outlined">settings</span>
+                            <span>Configurações</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html">
+                            <span class="material-symbols-outlined">info</span>
+                            <span>Sobre</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
+                    <div class="user-info">
+                        <div class="user-name">Maria Santos</div>
+                        <div class="user-email">maria@exemplo.com</div>
+                    </div>
+                    <a href="settings.html" class="settings-icon" title="Configurações">
+                        <span class="material-symbols-outlined">settings</span>
+                    </a>
+                </div>
+                <button class="btn-logout">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal - Configurações -->
+        <main class="settings-container">
+            <header class="settings-header">
+                <h1>Configurações</h1>
+                <p>Personalize sua experiência na plataforma M&M Direito</p>
+            </header>
+            
+            <!-- Navegação das Configurações -->
+            <div class="settings-navigation">
+                <button class="settings-nav-item active" data-section="profile">
+                    <span class="material-symbols-outlined">person</span>
+                    <span>Perfil</span>
+                </button>
+                <button class="settings-nav-item" data-section="appearance">
+                    <span class="material-symbols-outlined">palette</span>
+                    <span>Aparência</span>
+                </button>
+                <button class="settings-nav-item" data-section="notifications">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span>Notificações</span>
+                </button>
+                <button class="settings-nav-item" data-section="privacy">
+                    <span class="material-symbols-outlined">security</span>
+                    <span>Privacidade</span>
+                </button>
+                <button class="settings-nav-item" data-section="data">
+                    <span class="material-symbols-outlined">database</span>
+                    <span>Dados</span>
+                </button>
+            </div>
+            
+            <!-- Conteúdo das Configurações -->
+            <div class="settings-content">
+                <!-- Seção de Perfil -->
+                <section class="settings-section active" id="profile-section">
+                    <h2>Perfil do Usuário</h2>
+                    <p>Gerencie suas informações pessoais e preferências de conta.</p>
+                    
+                    <div class="settings-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <div class="avatar-placeholder">MS</div>
+                                <button class="avatar-upload-btn">
+                                    <span class="material-symbols-outlined">photo_camera</span>
+                                </button>
+                            </div>
+                            <div class="profile-info">
+                                <h3>Maria Santos</h3>
+                                <p>Advogada • OAB/SP 123.456</p>
+                            </div>
+                        </div>
+                        
+                        <form class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Nome Completo</label>
+                                    <input type="text" id="name" class="form-control" value="Maria Santos">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" id="email" class="form-control" value="maria@exemplo.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Telefone</label>
+                                    <input type="tel" id="phone" class="form-control" value="(11) 98765-4321">
+                                </div>
+                                <div class="form-group">
+                                    <label for="oab">Número OAB</label>
+                                    <input type="text" id="oab" class="form-control" value="123.456">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bio">Biografia</label>
+                                <textarea id="bio" class="form-control" rows="3">Advogada especializada em Direito Civil e Contratos, com 5 anos de experiência.</textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Alterar Senha</h3>
+                        <form class="settings-form">
+                            <div class="form-group">
+                                <label for="current-password">Senha Atual</label>
+                                <input type="password" id="current-password" class="form-control">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="new-password">Nova Senha</label>
+                                    <input type="password" id="new-password" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirmar Nova Senha</label>
+                                    <input type="password" id="confirm-password" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Alterar Senha</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Seção de Aparência -->
+                <section class="settings-section" id="appearance-section">
+                    <h2>Aparência</h2>
+                    <p>Personalize a aparência da interface de acordo com suas preferências.</p>
+                    
+                    <div class="settings-card">
+                        <h3>Tema</h3>
+                        <div class="theme-options">
+                            <div class="theme-option active">
+                                <div class="theme-preview light-theme"></div>
+                                <span>Claro</span>
+                            </div>
+                            <div class="theme-option">
+                                <div class="theme-preview dark-theme"></div>
+                                <span>Escuro</span>
+                            </div>
+                            <div class="theme-option">
+                                <div class="theme-preview system-theme"></div>
+                                <span>Sistema</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Tamanho da Fonte</h3>
+                        <div class="font-size-slider">
+                            <span class="font-size-label small">A</span>
+                            <input type="range" min="1" max="5" value="3" class="slider" id="font-size-slider" aria-label="Tamanho da Fonte">
+                            <span class="font-size-label large">A</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Densidade da Interface</h3>
+                        <div class="density-options">
+                            <div class="density-option">
+                                <input type="radio" name="density" id="density-compact" value="compact">
+                                <label for="density-compact">Compacta</label>
+                            </div>
+                            <div class="density-option">
+                                <input type="radio" name="density" id="density-normal" value="normal" checked>
+                                <label for="density-normal">Normal</label>
+                            </div>
+                            <div class="density-option">
+                                <input type="radio" name="density" id="density-comfortable" value="comfortable">
+                                <label for="density-comfortable">Confortável</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Seção de Notificações -->
+                <section class="settings-section" id="notifications-section">
+                    <h2>Notificações</h2>
+                    <p>Configure como e quando deseja receber notificações.</p>
+                    
+                    <div class="settings-card">
+                        <h3>Notificações por E-mail</h3>
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h4>Resumo Semanal</h4>
+                                <p>Receba um resumo semanal das suas atividades e análises.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked aria-label="Ativar notificação por e-mail para Resumo Semanal">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h4>Novos Recursos</h4>
+                                <p>Seja notificado quando novos recursos forem adicionados à plataforma.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked aria-label="Ativar notificação por e-mail para Novos Recursos">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h4>Dicas e Sugestões</h4>
+                                <p>Receba dicas sobre como aproveitar melhor a plataforma.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" aria-label="Ativar notificação por e-mail para Dicas e Sugestões">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Notificações no Navegador</h3>
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h4>Análises Concluídas</h4>
+                                <p>Receba notificações quando uma análise de documento for concluída.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked aria-label="Ativar notificação no navegador para Análises Concluídas">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h4>Lembretes</h4>
+                                <p>Receba lembretes sobre tarefas pendentes.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" aria-label="Ativar notificação no navegador para Lembretes">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Seção de Privacidade -->
+                <section class="settings-section" id="privacy-section">
+                    <h2>Privacidade</h2>
+                    <p>Gerencie suas configurações de privacidade e segurança.</p>
+                    
+                    <div class="settings-card">
+                        <h3>Histórico de Conversas</h3>
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h4>Salvar histórico de conversas</h4>
+                                <p>Mantenha um registro das suas conversas com os agentes para referência futura.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked aria-label="Salvar histórico de conversas">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h4>Período de retenção</h4>
+                                <p>Defina por quanto tempo suas conversas serão armazenadas.</p>
+                            </div>
+                            <select class="form-control" aria-label="Período de retenção do histórico de conversas">
+                                <option value="30">30 dias</option>
+                                <option value="90">90 dias</option>
+                                <option value="180" selected>6 meses</option>
+                                <option value="365">1 ano</option>
+                                <option value="0">Indefinidamente</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline-danger">Limpar Todo o Histórico</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Documentos Enviados</h3>
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h4>Armazenar documentos enviados</h4>
+                                <p>Mantenha uma cópia dos documentos enviados para análise.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked aria-label="Armazenar documentos enviados">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h4>Período de retenção</h4>
+                                <p>Defina por quanto tempo seus documentos serão armazenados.</p>
+                            </div>
+                            <select class="form-control" aria-label="Período de retenção dos documentos enviados">
+                                <option value="30">30 dias</option>
+                                <option value="90" selected>90 dias</option>
+                                <option value="180">6 meses</option>
+                                <option value="365">1 ano</option>
+                                <option value="0">Indefinidamente</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline-danger">Excluir Todos os Documentos</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Seção de Dados -->
+                <section class="settings-section" id="data-section">
+                    <h2>Dados</h2>
+                    <p>Gerencie seus dados e exportações.</p>
+                    
+                    <div class="settings-card">
+                        <h3>Exportação de Dados</h3>
+                        <p>Exporte seus dados para uso em outras plataformas ou para backup.</p>
+                        
+                        <div class="export-options">
+                            <div class="export-option">
+                                <div class="export-info">
+                                    <h4>Histórico de Conversas</h4>
+                                    <p>Exporte todas as suas conversas com os agentes.</p>
+                                </div>
+                                <button class="btn btn-outline-primary">Exportar</button>
+                            </div>
+                            
+                            <div class="export-option">
+                                <div class="export-info">
+                                    <h4>Documentos Analisados</h4>
+                                    <p>Exporte todos os documentos enviados para análise.</p>
+                                </div>
+                                <button class="btn btn-outline-primary">Exportar</button>
+                            </div>
+                            
+                            <div class="export-option">
+                                <div class="export-info">
+                                    <h4>Relatórios de Análise</h4>
+                                    <p>Exporte todos os relatórios de análise gerados.</p>
+                                </div>
+                                <button class="btn btn-outline-primary">Exportar</button>
+                            </div>
+                            
+                            <div class="export-option">
+                                <div class="export-info">
+                                    <h4>Todos os Dados</h4>
+                                    <p>Exporte todos os seus dados da plataforma.</p>
+                                </div>
+                                <button class="btn btn-outline-primary">Exportar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Exclusão de Conta</h3>
+                        <p>Exclua permanentemente sua conta e todos os dados associados.</p>
+                        <div class="warning-box">
+                            <span class="material-symbols-outlined">warning</span>
+                            <p>Esta ação é irreversível. Todos os seus dados, incluindo histórico de conversas, documentos e análises, serão permanentemente excluídos.</p>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-danger">Excluir Minha Conta</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Nossos Scripts -->
+    <script src="../assets/js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+// Components - Buttons
+// Button styles and variants
+
+// Base button
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  transition: color var(--duration-fast) var(--ease-in-out),
+              background-color var(--duration-fast) var(--ease-in-out),
+              border-color var(--duration-fast) var(--ease-in-out),
+              box-shadow var(--duration-fast) var(--ease-in-out);
+  
+  // Focus state
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
+  }
+  
+  // Disabled state
+  &:disabled {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  
+  // Icon in button
+  .btn-icon {
+    margin-right: 0.5rem;
+    font-size: 1.25em;
+    line-height: 0;
+    
+    &:only-child {
+      margin-right: 0;
+    }
+  }
+  
+  // Right icon
+  .btn-icon-right {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+}
+
+// Button variants
+.btn-primary {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  
+  &:hover {
+    color: var(--white);
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+  }
+}
+
+.btn-secondary {
+  color: var(--white);
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  
+  &:hover {
+    color: var(--white);
+    background-color: darken(var(--secondary), 10%);
+    border-color: darken(var(--secondary), 10%);
+  }
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  background-color: transparent;
+  border-color: var(--primary-color);
+  
+  &:hover {
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+}
+
+.btn-outline-secondary {
+  color: var(--secondary);
+  background-color: transparent;
+  border-color: var(--secondary);
+  
+  &:hover {
+    color: var(--white);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+  }
+}
+
+.btn-ghost {
+  color: var(--text-primary);
+  background-color: transparent;
+  border-color: transparent;
+  
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-tertiary);
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-lg);
+}
+
+// Icon button
+.btn-icon-only {
+  padding: 0.75rem;
+  border-radius: var(--border-radius-circle);
+  
+  .btn-icon {
+    margin-right: 0;
+  }
+  
+  &.btn-sm {
+    padding: 0.5rem;
+  }
+  
+  &.btn-lg {
+    padding: 1rem;
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  position: relative;
+  
+  .btn {
+    position: relative;
+    flex: 1 1 auto;
+    
+    &:not(:first-child) {
+      margin-left: -1px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    &:hover {
+      z-index: 1;
+    }
+    
+    &:focus {
+      z-index: 2;
+    }
+  }
+}
+
+// Specific buttons for the app
+.new-chat-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-circle);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-in-out),
+              border-color var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color-dark);
+  }
+  
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--text-secondary);
+  }
+}
+
+// Attach button
+.attach-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-circle);
+  transition: color var(--duration-fast) var(--ease-in-out),
+              background-color var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-tertiary);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .material-symbols-outlined {
+    font-size: 24px;
+  }
+}
+
+// Send button
+#send-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-circle);
+  transition: transform var(--duration-fast) var(--ease-in-out),
+              color var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .material-symbols-outlined {
+    font-size: 28px;
+  }
+}

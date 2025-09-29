@@ -1,0 +1,234 @@
+// Components - Messages
+// Chat message bubbles and related elements
+
+// Message container
+.message {
+  max-width: 80%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius-lg);
+  line-height: var(--line-height-base);
+  word-wrap: break-word;
+  position: relative;
+  
+  // Add shadow for depth
+  box-shadow: var(--shadow-sm);
+  
+  // Animation
+  animation: slideInUp var(--duration-normal) var(--ease-out) forwards;
+  
+  // Message timestamp
+  .message-time {
+    @include caption;
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+  
+  // Message sender
+  .message-sender {
+    @include body-text-sm;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.25rem;
+  }
+}
+
+// User message
+.message.user {
+  background-color: var(--primary-color);
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: var(--border-radius-sm);
+  
+  // Triangle indicator
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--primary-color);
+    transform: rotate(-45deg);
+  }
+}
+
+// Agent message
+.message.agent {
+  background-color: var(--agent-message-bg);
+  color: var(--text-primary);
+  align-self: flex-start;
+  border-bottom-left-radius: var(--border-radius-sm);
+  
+  // Triangle indicator
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--agent-message-bg);
+    transform: rotate(45deg);
+  }
+  
+  // Agent avatar
+  .agent-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--border-radius-circle);
+    margin-right: 0.5rem;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: var(--font-weight-bold);
+  }
+  
+  // Agent header
+  .agent-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Loading message
+.message.loading {
+  background-color: var(--agent-message-bg);
+  color: var(--text-secondary);
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  
+  .loading-text {
+    margin-right: 0.5rem;
+    font-style: italic;
+  }
+  
+  .loading-dots {
+    display: flex;
+    align-items: center;
+    
+    span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: var(--border-radius-circle);
+      background-color: var(--text-secondary);
+      margin: 0 2px;
+      animation: bounce 1.4s infinite ease-in-out both;
+      
+      &:nth-child(1) { animation-delay: -0.32s; }
+      &:nth-child(2) { animation-delay: -0.16s; }
+    }
+  }
+}
+
+// Upload progress message
+.message.upload-progress {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  align-self: center;
+  width: 80%;
+  
+  .progress-container {
+    width: 100%;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius-pill);
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-pill);
+    transition: width 0.2s ease-out;
+  }
+}
+
+// System message
+.message.system {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  align-self: center;
+  font-style: italic;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-pill);
+  max-width: 90%;
+  text-align: center;
+}
+
+// Error message
+.message.error {
+  background-color: var(--danger);
+  color: var(--white);
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-pill);
+  max-width: 90%;
+  text-align: center;
+}
+
+// Suggested actions
+.suggested-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  
+  button {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-pill);
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-in-out);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+    }
+  }
+}
+
+// Message with file attachment
+.message-attachment {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  
+  .attachment-icon {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+  }
+  
+  .attachment-info {
+    flex: 1;
+    
+    .attachment-name {
+      @include body-text-sm;
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .attachment-size {
+      @include caption;
+    }
+  }
+}
