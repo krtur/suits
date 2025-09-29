@@ -1,5 +1,23 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/mmdireito/packages/frontend/$1" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "mmdireito/packages/backend/main.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "mmdireito/packages/backend/main.py"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/mmdireito/packages/frontend/$1"
+    }
   ]
 }

@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const agentIdForApi = activeAgent.replace('_', '-');
-            const response = await fetch(`/agent/chat/${agentIdForApi}`, {
+            const response = await fetch(`/api/agent/chat/${agentIdForApi}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
