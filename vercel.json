@@ -5,6 +5,10 @@
       "src": "mmdireito/packages/backend/main.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb" }
+    },
+    {
+      "src": "mmdireito/packages/frontend/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -13,11 +17,16 @@
       "dest": "mmdireito/packages/backend/main.py"
     },
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "/mmdireito/packages/frontend/assets/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/mmdireito/packages/frontend/$1"
+      "src": "/pages/(.*)",
+      "dest": "/mmdireito/packages/frontend/pages/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/mmdireito/packages/frontend/index.html"
     }
   ]
 }
