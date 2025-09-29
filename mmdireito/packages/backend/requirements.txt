@@ -13,6 +13,3 @@ python-docx
 # Dependências para RAG (Vector Store)
 supabase
 langchain-community
-langchain-huggingface
-sentence-transformers
-torch>=2.1.0

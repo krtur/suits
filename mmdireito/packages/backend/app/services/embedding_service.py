@@ -1,21 +1,25 @@
-from langchain_huggingface import HuggingFaceEmbeddings
+import os
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from app.logger_config import logger
+from app.config import settings
 
 class EmbeddingService:
-    """Serviço para encapsular a geração de embeddings com um modelo local."""
+    """Serviço para encapsular a geração de embeddings com a API do Google."""
     
-    def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
-        """Inicializa o serviço com o modelo de embedding local."""
+    def __init__(self, model_name: str = "models/embedding-001"):
+        """Inicializa o serviço com o modelo de embedding do Google."""
+        if not settings.GOOGLE_API_KEY:
+            logger.error("A variável de ambiente GOOGLE_API_KEY não está configurada.")
+            raise ValueError("GOOGLE_API_KEY não encontrada.")
+        
         try:
-            # O modelo será baixado do Hugging Face Hub na primeira execução
-            # e ficará em cache para usos futuros.
-            self.embeddings_model = HuggingFaceEmbeddings(
-                model_name=model_name,
-                model_kwargs={'device': 'cpu'} # Garante que rode em CPU
+            self.embeddings_model = GoogleGenerativeAIEmbeddings(
+                model=model_name,
+                google_api_key=settings.GOOGLE_API_KEY
             )
-            logger.info(f"Modelo de embedding local '{model_name}' carregado com sucesso.")
+            logger.info(f"Modelo de embedding do Google '{model_name}' configurado com sucesso.")
         except Exception as e:
-            logger.error(f"Erro ao carregar modelo de embedding local: {e}")
+            logger.error(f"Erro ao configurar o modelo de embedding do Google: {e}")
             raise
 
     def get_embeddings(self):
