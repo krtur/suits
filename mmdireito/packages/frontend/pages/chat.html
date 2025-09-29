@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&M Direito - Agentes Inteligentes</title>
+    
+    <!-- Google Fonts e Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Script de Tema (carrega antes do CSS para evitar FOUC) -->
+    <script src="../assets/js/theme.js"></script>
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Biblioteca para renderizar Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body data-page="chat" class="light-theme">
+    <div class="app-container">
+        <!-- Barra Lateral para Seleção de Agentes -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h1 class="logo">M&M Direito</h1>
+            </header>
+            <nav class="agent-list">
+                <h2>Agentes Disponíveis</h2>
+                <ul>
+                    <!-- Agente Analisador de Contratos -->
+                    <li class="agent-item active" data-agent="contract_analyzer">
+                        <span class="material-symbols-outlined">gavel</span>
+                        <span>Analisador de Contratos</span>
+                    </li>
+                    <!-- Agente Advogado do Diabo -->
+                    <li class="agent-item" data-agent="devil_advocate">
+                        <span class="material-symbols-outlined">swords</span>
+                        <span>Advogado do Diabo</span>
+                    </li>
+                    <!-- Agente Civil -->
+                    <li class="agent-item" data-agent="agente_civil">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Agente Civil</span>
+                    </li>
+                    <li class="agent-item" data-agent="agente_penal">
+                        <i class="fas fa-gavel"></i>
+                        <span>Agente Penal</span>
+                    </li>
+                    <!-- Agente Futuro -->
+                    <li class="agent-item disabled" data-agent="legal_researcher">
+                        <span class="material-symbols-outlined">search</span>
+                        <span>Pesquisador Jurídico (Em Breve)</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
+                    <div class="user-info">
+                        <div class="user-name">Maria Santos</div>
+                        <div class="user-email">maria@exemplo.com</div>
+                    </div>
+                    <a href="settings.html" class="settings-icon" title="Configurações">
+                        <span class="material-symbols-outlined">settings</span>
+                    </a>
+                </div>
+                <button class="btn-logout">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Área Principal do Chat -->
+        <main class="chat-container">
+            <header class="chat-header">
+                <a href="../index.html" class="back-to-dashboard" title="Voltar ao Dashboard">
+                    <span class="material-symbols-outlined">arrow_back_ios</span>
+                </a>
+                <div class="agent-title-container">
+                    <h2 id="current-agent-name">Analisador de Contratos</h2>
+                    <p id="current-agent-description">Converse com o agente para analisar cláusulas, riscos e obrigações.</p>
+                </div>
+                <a href="chat.html" class="btn btn-primary new-chat-header-btn">
+                    <span class="material-symbols-outlined">add_comment</span>
+                    <span>Novo Chat</span>
+                </a>
+            </header>
+
+            <!-- Janela de Mensagens -->
+            <div class="chat-window" id="chat-window">
+                <!-- As mensagens serão inseridas aqui via JS -->
+            </div>
+
+            <!-- Formulário de Entrada de Mensagem -->
+            <footer class="chat-input-area">
+                <form id="chat-form" class="chat-form">
+                    <div class="input-wrapper">
+                        <textarea id="message-input" placeholder="Converse com o agente..." rows="1"></textarea>
+                    </div>
+                    <div class="chat-actions">
+                        <div class="action-buttons-left">
+                            <button type="button" class="action-btn" id="add-btn" title="Mais opções">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                            <input type="file" id="file-input" accept=".pdf,.docx,.jpg,.jpeg,.png" hidden>
+                            <button type="button" class="action-btn" id="attach-doc-btn" title="Anexar Documento">
+                                <span class="material-symbols-outlined">attach_file</span>
+                                <span>Documento</span>
+                            </button>
+                            <button type="button" class="action-btn" id="attach-img-btn" title="Anexar Imagem">
+                                <span class="material-symbols-outlined">image</span>
+                                <span>Imagem</span>
+                            </button>
+                        </div>
+                        <div class="action-buttons-right">
+                             <button type="submit" id="send-btn" class="action-btn hidden" title="Enviar Mensagem">
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                            <button type="button" class="action-btn" id="mic-btn" title="Usar microfone (em breve)" disabled>
+                                <span class="material-symbols-outlined">mic</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </footer>
+        </main>
+
+        <!-- Sidebar de Anotações -->
+        <aside class="notes-sidebar">
+            <header class="notes-header">
+                <h3>Minhas Anotações</h3>
+                <button class="toggle-notes-btn" title="Ocultar/Mostrar Anotações">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </header>
+            <div class="notes-content" id="notes-content">
+                <p class="empty-notes-placeholder">Selecione um texto na conversa para salvá-lo aqui.</p>
+                <!-- As anotações aparecerão aqui -->
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Nossos Scripts -->
+    <!-- Lógica específica da página de chat -->
+    <script src="../assets/js/chat.js"></script>
+    <script src="../assets/js/notes.js"></script> <!-- Script para a nova funcionalidade -->
+</body>
+</html>

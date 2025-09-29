@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&M Direito - Dashboard</title>
+    
+    <!-- Google Fonts e Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Script de Tema (carrega antes do CSS para evitar FOUC) -->
+    <script src="assets/js/theme.js"></script>
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="light-theme">
+    <div class="app-container">
+        <!-- Barra Lateral para Navegação -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h1 class="logo">M&M Direito</h1>
+            </header>
+
+            <!-- Menu de Navegação -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="index.html">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/chat.html">
+                            <span class="material-symbols-outlined">chat</span>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/documents.html">
+                            <span class="material-symbols-outlined">description</span>
+                            <span>Documentos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/settings.html">
+                            <span class="material-symbols-outlined">settings</span>
+                            <span>Configurações</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/about.html">
+                            <span class="material-symbols-outlined">info</span>
+                            <span>Sobre</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Histórico de Conversas -->
+            <div class="conversation-history">
+                <h2>Conversas Recentes</h2>
+                <div class="history-item">
+                    <div class="history-icon">
+                        <span class="material-symbols-outlined">gavel</span>
+                    </div>
+                    <div class="history-content">
+                        <div class="history-title">Análise de Contrato de Locação</div>
+                        <div class="history-date">Hoje, 14:30</div>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-icon">
+                        <span class="material-symbols-outlined">swords</span>
+                    </div>
+                    <div class="history-content">
+                        <div class="history-title">Revisão de Petição Inicial</div>
+                        <div class="history-date">Ontem, 10:15</div>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="history-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="history-content">
+                        <div class="history-title">Dúvidas sobre Código Civil</div>
+                        <div class="history-date">20/09/2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perfil do Usuário -->
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
+                    <div class="user-info">
+                        <div class="user-name">Maria Santos</div>
+                        <div class="user-email">maria@exemplo.com</div>
+                    </div>
+                    <a href="pages/settings.html" class="settings-icon" title="Configurações">
+                        <span class="material-symbols-outlined">settings</span>
+                    </a>
+                </div>
+                <button class="btn-logout">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal - Dashboard -->
+        <main class="dashboard">
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <h1>Bem-vindo ao M&M Direito</h1>
+                    <p>Plataforma de agentes jurídicos inteligentes para auxiliar em suas necessidades legais.</p>
+                </div>
+            </div>
+            
+            <!-- Seção de Agentes -->
+            <section class="dashboard-section">
+                <h2>
+                    <span class="material-symbols-outlined section-icon">smart_toy</span>
+                    Agentes Disponíveis
+                </h2>
+                <p>Escolha um dos nossos agentes especializados para iniciar uma conversa:</p>
+                
+                <div class="agent-cards">
+                    <!-- Analisador de Contratos -->
+                    <div class="agent-card" data-agent="contract_analyzer">
+                        <div class="agent-card-header">
+                            <div class="agent-icon">
+                                <span class="material-symbols-outlined">gavel</span>
+                            </div>
+                            <div class="agent-info">
+                                <h3>Analisador de Contratos</h3>
+                                <span class="agent-type">Especialista em Contratos</span>
+                            </div>
+                        </div>
+                        <div class="agent-card-body">
+                            <p>Analise contratos, identifique riscos e obtenha recomendações baseadas no Código Civil brasileiro.</p>
+                            <div class="agent-features">
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Upload de contratos (PDF/DOCX)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Análise de riscos e obrigações</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Sugestões de melhorias</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-card-footer">
+                            <button class="btn btn-primary start-chat-btn" data-agent="contract_analyzer">Iniciar Chat</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Advogado do Diabo -->
+                    <div class="agent-card" data-agent="devil_advocate">
+                        <div class="agent-card-header">
+                            <div class="agent-icon">
+                                <span class="material-symbols-outlined">swords</span>
+                            </div>
+                            <div class="agent-info">
+                                <h3>Advogado do Diabo</h3>
+                                <span class="agent-type">Crítico de Argumentação</span>
+                            </div>
+                        </div>
+                        <div class="agent-card-body">
+                            <p>Teste a solidez de seus argumentos jurídicos com um crítico implacável que encontrará falhas em sua argumentação.</p>
+                            <div class="agent-features">
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Análise crítica de argumentos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Identificação de pontos fracos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Sugestões de contra-argumentos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-card-footer">
+                            <button class="btn btn-primary start-chat-btn" data-agent="devil_advocate">Iniciar Chat</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Agente Civil -->
+                    <div class="agent-card" data-agent="agente_civil">
+                        <div class="agent-card-header">
+                            <div class="agent-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="agent-info">
+                                <h3>Agente Civil</h3>
+                                <span class="agent-type">Especialista em Direito Civil</span>
+                            </div>
+                        </div>
+                        <div class="agent-card-body">
+                            <p>Tire dúvidas sobre o Código Civil brasileiro, obrigações, contratos, direitos reais e responsabilidade civil.</p>
+                            <div class="agent-features">
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Consulta ao Código Civil</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Interpretação de artigos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Esclarecimento de dúvidas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-card-footer">
+                            <button class="btn btn-primary start-chat-btn" data-agent="agente_civil">Iniciar Chat</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Agente Penal -->
+                    <div class="agent-card" data-agent="agente_penal">
+                        <div class="agent-card-header">
+                            <div class="agent-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <div class="agent-info">
+                                <h3>Agente Penal</h3>
+                                <span class="agent-type">Especialista em Direito Penal</span>
+                            </div>
+                        </div>
+                        <div class="agent-card-body">
+                            <p>Consulte informações sobre crimes, penas, procedimentos penais e execução penal com base na legislação brasileira.</p>
+                            <div class="agent-features">
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Consulta ao Código Penal</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Processo Penal</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-outlined feature-icon">check_circle</span>
+                                    <span class="feature-text">Execução Penal</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agent-card-footer">
+                            <button class="btn btn-primary start-chat-btn" data-agent="agente_penal">Iniciar Chat</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Conversas Recentes -->
+            <section class="dashboard-section">
+                <h2>
+                    <span class="material-symbols-outlined section-icon">history</span>
+                    Conversas Recentes
+                </h2>
+                <p>Continue de onde parou ou inicie uma nova conversa:</p>
+                
+                <div class="recent-conversations">
+                    <div class="conversation-card">
+                        <div class="conversation-icon">
+                            <span class="material-symbols-outlined">gavel</span>
+                        </div>
+                        <div class="conversation-info">
+                            <div class="conversation-title">Análise de Contrato de Locação</div>
+                            <div class="conversation-preview">Analisando cláusulas de multa e rescisão antecipada...</div>
+                        </div>
+                        <div class="conversation-meta">
+                            <div class="conversation-date">Hoje, 14:30</div>
+                            <div class="conversation-agent">Analisador de Contratos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-card">
+                        <div class="conversation-icon">
+                            <span class="material-symbols-outlined">swords</span>
+                        </div>
+                        <div class="conversation-info">
+                            <div class="conversation-title">Revisão de Petição Inicial</div>
+                            <div class="conversation-preview">Identificando pontos fracos na argumentação sobre danos morais...</div>
+                        </div>
+                        <div class="conversation-meta">
+                            <div class="conversation-date">Ontem, 10:15</div>
+                            <div class="conversation-agent">Advogado do Diabo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-card">
+                        <div class="conversation-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="conversation-info">
+                            <div class="conversation-title">Dúvidas sobre Código Civil</div>
+                            <div class="conversation-preview">Esclarecimentos sobre usucapião e requisitos legais...</div>
+                        </div>
+                        <div class="conversation-meta">
+                            <div class="conversation-date">20/09/2025</div>
+                            <div class="conversation-agent">Agente Civil</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção de Dicas Rápidas -->
+            <section class="dashboard-section">
+                <h2>
+                    <span class="material-symbols-outlined section-icon">tips_and_updates</span>
+                    Dicas Rápidas
+                </h2>
+                <p>Aproveite ao máximo os agentes jurídicos com estas dicas:</p>
+                
+                <div class="quick-tips">
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-number">1</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Seja específico em suas perguntas</div>
+                                <div class="tip-description">Quanto mais detalhes você fornecer, mais precisa será a resposta do agente.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-number">2</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Faça upload de documentos completos</div>
+                                <div class="tip-description">Para análise de contratos, envie o documento completo para uma avaliação mais precisa.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-number">3</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Verifique as fontes legais</div>
+                                <div class="tip-description">Os agentes citam artigos e leis específicas. Sempre confira essas referências.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-number">4</div>
+                            <div class="tip-content">
+                                <div class="tip-title">Use o agente certo para cada tarefa</div>
+                                <div class="tip-description">Cada agente é especializado em uma área específica do direito para resultados melhores.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Nossos Scripts -->
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

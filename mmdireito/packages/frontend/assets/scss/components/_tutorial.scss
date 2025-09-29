@@ -1,0 +1,312 @@
+// Components - Tutorial
+// Estilos para o tutorial interativo
+
+// Overlay do tutorial
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9000;
+  pointer-events: none;
+  transition: all var(--duration-normal) var(--ease-in-out);
+  
+  // Recorte inicial (será modificado pelo JavaScript)
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+}
+
+// Tooltip do tutorial
+.tutorial-tooltip {
+  position: absolute;
+  width: 320px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 9001;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--duration-normal) var(--ease-in-out),
+              transform var(--duration-normal) var(--ease-in-out);
+  
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  // Seta do tooltip
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  
+  // Posições do tooltip
+  &.position-top::before {
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px;
+    border-color: var(--bg-secondary) transparent transparent transparent;
+  }
+  
+  &.position-right::before {
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--bg-secondary) transparent transparent;
+  }
+  
+  &.position-bottom::before {
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent var(--bg-secondary) transparent;
+  }
+  
+  &.position-left::before {
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--bg-secondary);
+  }
+  
+  // Cabeçalho do tooltip
+  .tutorial-tooltip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    h3 {
+      margin: 0;
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      color: var(--primary-color);
+    }
+    
+    .tutorial-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: var(--border-radius-circle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--duration-fast) var(--ease-in-out);
+      
+      &:hover {
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+      }
+      
+      .material-symbols-outlined {
+        font-size: 20px;
+      }
+    }
+  }
+  
+  // Corpo do tooltip
+  .tutorial-tooltip-body {
+    padding: 1rem;
+    
+    p {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-base);
+    }
+  }
+  
+  // Rodapé do tooltip
+  .tutorial-tooltip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border-color);
+    
+    .tutorial-progress {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+    }
+    
+    .tutorial-buttons {
+      display: flex;
+      gap: 0.5rem;
+      
+      button {
+        background-color: var(--bg-tertiary);
+        border: none;
+        border-radius: var(--border-radius);
+        padding: 0.5rem 0.75rem;
+        font-size: var(--font-size-sm);
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-in-out);
+        
+        &:hover {
+          background-color: var(--border-color);
+        }
+        
+        &.tutorial-next-btn {
+          background-color: var(--primary-color);
+          color: var(--white);
+          
+          &:hover {
+            background-color: var(--dark-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Botão para reabrir o tutorial
+.tutorial-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform var(--duration-fast) var(--ease-in-out),
+              background-color var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    transform: scale(1.1);
+    background-color: var(--dark-color);
+    
+    .tutorial-button-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .material-symbols-outlined {
+    font-size: 24px;
+  }
+  
+  .tutorial-button-tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+    margin-right: 0.75rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-in-out),
+                transform var(--duration-normal) var(--ease-in-out);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -6px;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 0 6px 6px;
+      border-color: transparent transparent transparent var(--bg-secondary);
+    }
+  }
+}
+
+// Modal de boas-vindas
+.welcome-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-in-out);
+  
+  &.active {
+    opacity: 1;
+    
+    .welcome-modal-content {
+      transform: translateY(0);
+    }
+  }
+  
+  .welcome-modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+  
+  .welcome-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    h2 {
+      margin: 0;
+      color: var(--primary-color);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+  
+  .welcome-modal-body {
+    padding: 1.5rem;
+    
+    p {
+      margin: 0 0 1.5rem;
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-base);
+    }
+    
+    .welcome-modal-image {
+      text-align: center;
+      margin: 1.5rem 0;
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        max-height: 200px;
+      }
+    }
+  }
+  
+  .welcome-modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}

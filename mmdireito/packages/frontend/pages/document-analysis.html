@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&M Direito - Análise de Documentos</title>
+    
+    <!-- Google Fonts e Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Script de Tema (carrega antes do CSS para evitar FOUC) -->
+    <script src="../assets/js/theme.js"></script>
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <!-- Biblioteca para renderizar Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="light-theme">
+    <div class="app-container" data-active-agent="contract_analyzer">
+        <!-- Barra Lateral para Navegação -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h1 class="logo">M&M Direito</h1>
+            </header>
+            
+            <!-- Menu de Navegação -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="chat.html">
+                            <span class="material-symbols-outlined">chat</span>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="document-analysis.html">
+                            <span class="material-symbols-outlined">description</span>
+                            <span>Análise de Documentos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <span class="material-symbols-outlined">settings</span>
+                            <span>Configurações</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html">
+                            <span class="material-symbols-outlined">info</span>
+                            <span>Sobre</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Documentos Recentes -->
+            <div class="document-history">
+                <h2>Documentos Recentes</h2>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <span class="material-symbols-outlined">description</span>
+                    </div>
+                    <div class="document-content">
+                        <div class="document-title">Contrato de Locação.pdf</div>
+                        <div class="document-date">Hoje, 14:30</div>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <span class="material-symbols-outlined">description</span>
+                    </div>
+                    <div class="document-content">
+                        <div class="document-title">Contrato de Trabalho.docx</div>
+                        <div class="document-date">Ontem, 10:15</div>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <span class="material-symbols-outlined">description</span>
+                    </div>
+                    <div class="document-content">
+                        <div class="document-title">Acordo Comercial.pdf</div>
+                        <div class="document-date">20/09/2025</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
+                    <div class="user-info">
+                        <div class="user-name">Maria Santos</div>
+                        <div class="user-email">maria@exemplo.com</div>
+                    </div>
+                    <a href="settings.html" class="settings-icon" title="Configurações">
+                        <span class="material-symbols-outlined">settings</span>
+                    </a>
+                </div>
+                <button class="btn-logout">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal - Análise de Documentos -->
+        <main class="document-analysis">
+            <!-- Cabeçalho da Página -->
+            <header class="document-header">
+                <h1>Análise de Documentos</h1>
+                <p>Faça upload de um documento jurídico para análise detalhada.</p>
+            </header>
+            
+            <!-- Área de Upload -->
+            <section class="upload-section">
+                <div class="upload-container" id="upload-container">
+                    <div class="upload-icon">
+                        <span class="material-symbols-outlined">upload_file</span>
+                    </div>
+                    <h2>Arraste e solte seu documento aqui</h2>
+                    <p>ou</p>
+                    <label for="file-input" class="btn btn-primary">Selecionar Arquivo</label>
+                    <input type="file" id="file-input" accept=".pdf,.docx" hidden>
+                    <p class="upload-info">Formatos aceitos: PDF, DOCX (máx. 10MB)</p>
+                </div>
+                
+                <!-- Progresso do Upload (inicialmente oculto) -->
+                <div class="upload-progress hidden" id="upload-progress">
+                    <div class="progress-info">
+                        <span class="file-name">arquivo.pdf</span>
+                        <span class="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-status">Enviando arquivo...</div>
+                </div>
+            </section>
+            
+            <!-- Área de Análise (inicialmente oculta) -->
+            <section class="analysis-section hidden" id="analysis-section">
+                <div class="analysis-header">
+                    <div class="document-info">
+                        <h2 id="document-name">Contrato de Locação.pdf</h2>
+                        <div class="document-meta">
+                            <span class="document-pages">5 páginas</span>
+                            <span class="document-size">245 KB</span>
+                            <span class="document-date">Enviado em 22/09/2025</span>
+                        </div>
+                    </div>
+                    <div class="document-actions">
+                        <button class="btn btn-outline-primary" id="download-btn">
+                            <span class="material-symbols-outlined">download</span>
+                            Download
+                        </button>
+                        <button class="btn btn-outline-primary" id="share-btn">
+                            <span class="material-symbols-outlined">share</span>
+                            Compartilhar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Tabs de Análise -->
+                <div class="analysis-tabs">
+                    <div class="tabs-header">
+                        <div class="tab-item active" data-tab="summary">Resumo</div>
+                        <div class="tab-item" data-tab="risks">Riscos</div>
+                        <div class="tab-item" data-tab="obligations">Obrigações</div>
+                        <div class="tab-item" data-tab="legal">Referências Legais</div>
+                        <div class="tab-item" data-tab="chat">Chat</div>
+                    </div>
+                    
+                    <!-- Conteúdo das Tabs -->
+                    <div class="tab-content active" id="summary-tab">
+                        <div class="summary-card">
+                            <h3>Resumo do Documento</h3>
+                            <p>Este é um contrato de locação residencial com duração de 30 meses, celebrado entre João Silva (locador) e Maria Santos (locatária) para o imóvel localizado na Rua das Flores, 123, São Paulo/SP.</p>
+                            
+                            <div class="summary-highlights">
+                                <div class="highlight-item">
+                                    <div class="highlight-label">Tipo de Contrato</div>
+                                    <div class="highlight-value">Locação Residencial</div>
+                                </div>
+                                <div class="highlight-item">
+                                    <div class="highlight-label">Valor do Aluguel</div>
+                                    <div class="highlight-value">R$ 2.500,00</div>
+                                </div>
+                                <div class="highlight-item">
+                                    <div class="highlight-label">Duração</div>
+                                    <div class="highlight-value">30 meses</div>
+                                </div>
+                                <div class="highlight-item">
+                                    <div class="highlight-label">Índice de Reajuste</div>
+                                    <div class="highlight-value">IGPM</div>
+                                </div>
+                            </div>
+                            
+                            <h4>Principais Cláusulas</h4>
+                            <ul class="summary-list">
+                                <li>Cláusula 3: Estabelece o valor do aluguel e forma de pagamento</li>
+                                <li>Cláusula 5: Define as condições para rescisão antecipada</li>
+                                <li>Cláusula 7: Estabelece a responsabilidade por reparos</li>
+                                <li>Cláusula 10: Define as penalidades por atraso no pagamento</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="risks-tab">
+                        <div class="risks-card">
+                            <h3>Análise de Riscos</h3>
+                            <p>Foram identificados os seguintes pontos de atenção no contrato:</p>
+                            
+                            <div class="risk-items">
+                                <div class="risk-item high">
+                                    <div class="risk-header">
+                                        <div class="risk-level">Alto Risco</div>
+                                        <div class="risk-title">Multa por rescisão desproporcional</div>
+                                    </div>
+                                    <div class="risk-content">
+                                        <p>A cláusula 5.2 estabelece multa de 50% do valor restante do contrato em caso de rescisão antecipada pelo locatário, o que pode ser considerado abusivo segundo a jurisprudência do STJ.</p>
+                                        <div class="risk-reference">
+                                            <span class="material-symbols-outlined">gavel</span>
+                                            <span>Conflito com Súmula 472 do STJ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="risk-item medium">
+                                    <div class="risk-header">
+                                        <div class="risk-level">Médio Risco</div>
+                                        <div class="risk-title">Ausência de cláusula sobre benfeitorias</div>
+                                    </div>
+                                    <div class="risk-content">
+                                        <p>O contrato não especifica claramente como serão tratadas as benfeitorias realizadas pelo locatário, o que pode gerar conflitos futuros sobre indenização ou retenção.</p>
+                                        <div class="risk-reference">
+                                            <span class="material-symbols-outlined">gavel</span>
+                                            <span>Art. 35 da Lei do Inquilinato (Lei 8.245/91)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="risk-item low">
+                                    <div class="risk-header">
+                                        <div class="risk-level">Baixo Risco</div>
+                                        <div class="risk-title">Prazo para comunicação de defeitos</div>
+                                    </div>
+                                    <div class="risk-content">
+                                        <p>A cláusula 8.3 estabelece prazo de apenas 24 horas para comunicação de defeitos no imóvel, o que pode ser considerado exíguo em algumas situações.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="obligations-tab">
+                        <div class="obligations-card">
+                            <h3>Obrigações das Partes</h3>
+                            
+                            <div class="obligations-columns">
+                                <div class="obligations-column">
+                                    <h4>Obrigações do Locador</h4>
+                                    <ul class="obligations-list">
+                                        <li>Entregar o imóvel em condições de uso</li>
+                                        <li>Garantir o uso pacífico do imóvel</li>
+                                        <li>Realizar reparos estruturais</li>
+                                        <li>Pagar impostos e taxas sobre o imóvel (IPTU)</li>
+                                        <li>Fornecer recibos dos pagamentos</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="obligations-column">
+                                    <h4>Obrigações do Locatário</h4>
+                                    <ul class="obligations-list">
+                                        <li>Pagar o aluguel pontualmente</li>
+                                        <li>Utilizar o imóvel para fins residenciais</li>
+                                        <li>Realizar manutenção e conservação</li>
+                                        <li>Pagar despesas de consumo (água, luz, gás)</li>
+                                        <li>Restituir o imóvel no estado recebido</li>
+                                        <li>Permitir vistorias periódicas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h4>Prazos Importantes</h4>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">Início</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Assinatura do Contrato</div>
+                                        <div class="timeline-description">01/10/2025</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">12 meses</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Primeiro Reajuste</div>
+                                        <div class="timeline-description">01/10/2026</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">24 meses</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Segundo Reajuste</div>
+                                        <div class="timeline-description">01/10/2027</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">30 meses</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Término do Contrato</div>
+                                        <div class="timeline-description">01/04/2028</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="legal-tab">
+                        <div class="legal-card">
+                            <h3>Referências Legais</h3>
+                            <p>O contrato está sujeito às seguintes leis e normas:</p>
+                            
+                            <div class="legal-references">
+                                <div class="legal-reference">
+                                    <div class="legal-reference-header">
+                                        <h4>Lei do Inquilinato (Lei 8.245/91)</h4>
+                                    </div>
+                                    <div class="legal-reference-content">
+                                        <p>Regula as locações dos imóveis urbanos e os procedimentos a elas pertinentes.</p>
+                                        <div class="legal-articles">
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 22</div>
+                                                <div class="article-content">Define as obrigações do locador.</div>
+                                            </div>
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 23</div>
+                                                <div class="article-content">Define as obrigações do locatário.</div>
+                                            </div>
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 35</div>
+                                                <div class="article-content">Trata das benfeitorias e direito de retenção.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="legal-reference">
+                                    <div class="legal-reference-header">
+                                        <h4>Código Civil (Lei 10.406/2002)</h4>
+                                    </div>
+                                    <div class="legal-reference-content">
+                                        <p>Estabelece normas gerais sobre contratos e obrigações.</p>
+                                        <div class="legal-articles">
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 421</div>
+                                                <div class="article-content">Liberdade contratual e função social do contrato.</div>
+                                            </div>
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 422</div>
+                                                <div class="article-content">Princípio da boa-fé objetiva.</div>
+                                            </div>
+                                            <div class="legal-article">
+                                                <div class="article-number">Art. 473</div>
+                                                <div class="article-content">Resilição unilateral dos contratos.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="legal-reference">
+                                    <div class="legal-reference-header">
+                                        <h4>Jurisprudência Relevante</h4>
+                                    </div>
+                                    <div class="legal-reference-content">
+                                        <div class="legal-articles">
+                                            <div class="legal-article">
+                                                <div class="article-number">Súmula 472 STJ</div>
+                                                <div class="article-content">"A cobrança de multa de 50% sobre o valor dos aluguéis durante o período de cumprimento do contrato, na hipótese de resilição unilateral, é abusiva."</div>
+                                            </div>
+                                            <div class="legal-article">
+                                                <div class="article-number">REsp 1.340.084/SP</div>
+                                                <div class="article-content">Estabelece limites para multa em caso de rescisão antecipada.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="chat-tab">
+                        <div class="chat-interface">
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="message agent">
+                                    <div class="agent-header">
+                                        <div class="agent-avatar">AC</div>
+                                        <div class="agent-name">Analisador de Contratos</div>
+                                    </div>
+                                    <p>Olá! Analisei seu contrato de locação e identifiquei alguns pontos importantes. O que você gostaria de saber especificamente?</p>
+                                </div>
+                                
+                                <div class="suggested-actions">
+                                    <button>Quais são os principais riscos?</button>
+                                    <button>Explique a cláusula de rescisão</button>
+                                    <button>Como funciona o reajuste?</button>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-input-area">
+                                <form id="chat-form" class="chat-form">
+                                    <textarea id="message-input" placeholder="Digite sua pergunta sobre o documento..." rows="1"></textarea>
+                                    <button type="submit" id="send-btn">
+                                        <span class="material-symbols-outlined">send</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Nossos Scripts -->
+    <script src="../assets/js/document-analysis.js"></script>
+</body>
+</html>
