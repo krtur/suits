@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Adiciona o diretório do backend ao sys.path para resolver ModuleNotFoundError na Vercel
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
